@@ -1,0 +1,42 @@
+{
+	"temperature": {
+		"value": 20.31,
+		"message": "The temperature is **just right**.",
+		"ideal_conditions": "People tend to sleep best when temperature is between **15°C** and **23°C**.",
+		"condition": "IDEAL",
+		"last_updated_utc": 1479844380000,
+		"unit": "c"
+	},
+	"humidity": {
+		"value": 58.994698,
+		"message": "The humidity is **just right**.",
+		"ideal_conditions": "People tend to sleep best when humidity is between **30%** and **60%**.",
+		"condition": "IDEAL",
+		"last_updated_utc": 1479844380000,
+		"unit": "%"
+	},
+	"light": {
+		"value": 1.2931824,
+		"message": "The light level is **just right**.",
+		"ideal_conditions": "For ideal sleep, your bedroom should be as dark as possible, which is below **2lux**.",
+		"condition": "IDEAL",
+		"last_updated_utc": 1479844380000,
+		"unit": "lux"
+	},
+	"sound": {
+		"value": 35.0,
+		"message": "The noise level is **just right**.",
+		"ideal_conditions": "For ideal sleep, your bedroom should be as quiet as possible, which is usually below **40dB**.",
+		"condition": "IDEAL",
+		"last_updated_utc": 1479844380000,
+		"unit": "dB"
+	},
+	"particulates": {
+		"value": 17.121487,
+		"message": "The air quality is **just right**.",
+		"ideal_conditions": "For the best sleep, the air in your bedroom should be as clean as possible. Ideally, it should be below **80µg/m³**.",
+		"condition": "IDEAL",
+		"last_updated_utc": 1479844380000,
+		"unit": "AQI"
+	}
+}

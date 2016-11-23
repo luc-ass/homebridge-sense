@@ -1,0 +1,18 @@
+{
+    "bridge": {
+        "name": "Homebridge",
+        "username": "CC:22:3D:E3:CE:51",
+        "port": 51826,
+        "pin": "031-45-154"
+    },
+    "description": "This is an example configuration file for homebridge sense plugin",
+    "hint": "Always paste into jsonlint.com validation page before starting your homebridge, saves a lot of frustration",
+    "accessories": [
+        {
+            "accessory": "Sense",
+            "name": "Sense",
+            "username": "username/email",
+            "password": "password"
+        }
+    ]
+}

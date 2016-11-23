@@ -1,0 +1,24 @@
+{
+  "name": "homebridge-sense",
+  "version": "0.0.1",
+  "description": "Hello Sense support for Homebridge: https://github.com/nfarina/homebridge",
+  "license": "ISC",
+  "keywords": [
+    "homebridge-plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/luc-ass/homebridge-sense.git"
+  },
+  "bugs": {
+    "url": "http://github.com/luc-ass/homebridge-sense/issues"
+  },
+  "engines": {
+    "node": ">=0.12.0",
+    "homebridge": ">=0.3.1"
+  },
+  "dependencies": {
+    "request": "^2.69.0",
+    "util": ">= 0.10.3"
+  }
+}

@@ -10,7 +10,7 @@ Example:
     {
         "accessory": "Sense",
         "name": "Sense",
-        "email": "something@something.com",
+        "username": "something@something.com",
         "password": "password"
     }
 

@@ -1,31 +1,82 @@
-var request = require("request");
-var inherits = require('util').inherits;
-var Service, Characteristic;
+var sense = require('./lib/sense');
+var Characteristic, Service;
 
-module.exports = function(homebridge) {
+var permanent_token;
+
+module.exports = function(homebridge){
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
 
-  homebridge.registerAccessory("homebridge-sense", "Sense", Sense);
+  homebridge.registerAccessory("homebridge-sense", "Sense", SenseAccessory);
 
+  function SenseAccessory(log, config) {
+    this.log = log;
 
-  function Sense(log, config) {
-    // configuration
+    this.name = config['name'];
     this.username = config['username'];
     this.password = config['password'];
     this.client_id = config['client_id'] || "8d3c1664-05ae-47e4-bcdb-477489590aa4";
     this.client_secret = config['client_secret'] || "4f771f6f-5c10-4104-bbc6-3333f5b11bf9";
 
-    this.log = log;
-
     this.token_url = "https://api.sense.is/v1/oauth2/token";
     this.conditions_url = "https://api.sense.is/v1/room/current?temp_unit=c";
 
+    // request token on initialization for later requests.
+    // token lives for about a year
+    // I expect the server to be restarted more often
+    sense.login(this.username, this.password, function(token){
+      permanent_token = token;
+    });
   }
 
-  // Custom Characteristics and service...
+  SenseAccessory.prototype = {
 
-  // Fill Characteristics
+    getTemperature: function(callback) {
+      this.log("Requesting temperature!");
+      sense.temperature(this.username, this.password, permanent_token, function(temperature){
+        callback(null, temperature);
+      });
+    },
 
-  // Export Characteristics
+    getHumidity: function(callback) {
+      this.log("Requesting humidity!");
+      sense.humidity(this.username, this.password, permanent_token, function(humidity){
+        callback(null, humidity);
+      });
+    },
+
+    getLightLevel: function(callback) {
+      this.log("Requesting ambient light level!");
+      sense.light(this.username, this.password, permanent_token, function(light){
+        callback(null, light);
+      });
+    },
+
+    getServices: function() {
+      
+      var informationService = new Service.AccessoryInformation();
+      informationService
+        .setCharacteristic(Characteristic.Name, this.name)
+        .setCharacteristic(Characteristic.Manufacturer, "Hello.is")
+        .setCharacteristic(Characteristic.Model, "Sense")
+        .setCharacteristic(Characteristic.SerialNumber, "ABC1234");
+
+      var temperatureService = new Service.TemperatureSensor(this.name);
+      temperatureService
+        .getCharacteristic(Characteristic.CurrentTemperature)
+        .on('get', this.getTemperature.bind(this));
+
+      var humidityService = new Service.HumiditySensor(this.name);
+      humidityService
+        .getCharacteristic(Characteristic.CurrentRelativeHumidity)
+        .on('get', this.getHumidity.bind(this));
+
+      var ambientLightSerivce = new Service.LightSensor(this.name);
+      ambientLightSerivce
+        .getCharacteristic(Characteristic.CurrentAmbientLightLevel)
+        .on('get', this.getLightLevel.bind(this));
+
+      return [temperatureService, humidityService, ambientLightSerivce];
+    }
+  }
 }

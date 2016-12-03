@@ -15,5 +15,5 @@ Example:
     }
 
 # Roadmap
-- write NodeJS-Plugin for Hello Sense for later use in Plugin
-- implement Temperature, Humidity, Sound (noise), Light (ambient light), Particulate (air quality)
+- ~~write NodeJS-Plugin for Hello Sense for later use in Plugin~~
+- implement ~~Temperature~~, ~~Humidity~~, Sound (noise), ~~Light (ambient light)~~, ~~Particulate (air quality)~~

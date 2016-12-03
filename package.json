@@ -1,6 +1,6 @@
 {
   "name": "homebridge-sense",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Hello Sense support for Homebridge: https://github.com/nfarina/homebridge",
   "license": "ISC",
   "keywords": [

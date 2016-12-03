@@ -52,6 +52,26 @@ module.exports = function(homebridge){
       });
     },
 
+    getParticulateDensity: function(callback) {
+      this.log("Requesting ambient light level!");
+      sense.particulates(this.username, this.password, permanent_token, function(light){
+        callback(null, light);
+      });
+    },
+
+    getParticulateSize: function(callback) {
+      // Return 0 for particulate size 2.5 microns
+      this.log("Requesting particulate size");
+      callback(null, 0);
+    },
+
+    getAirQuality: function(callback) {
+      this.log("Requesting Air Quality!");
+      sense.airQuality(this.username, this.password, permanent_token, function(airQuality){
+        callback(null, airQuality);
+      });
+    },
+
     getServices: function() {
       
       var informationService = new Service.AccessoryInformation();
@@ -76,7 +96,19 @@ module.exports = function(homebridge){
         .getCharacteristic(Characteristic.CurrentAmbientLightLevel)
         .on('get', this.getLightLevel.bind(this));
 
-      return [temperatureService, humidityService, ambientLightSerivce];
+      var airQualityService = new Service.AirQualitySensor(this.name);
+      airQualityService
+        .getCharacteristic(Characteristic.AirParticulateDensity)
+        .on('get', this.getParticulateDensity.bind(this));
+      // Is not known yet. Not very good documented by Hello Inc.
+      // airQualityService
+      //  .getCharacteristic(Characteristic.AirParticulateSize)
+      //  .on('get', this.getParticulateSize.bind(this));
+      airQualityService
+        .getCharacteristic(Characteristic.AirQuality)
+        .on('get', this.getAirQuality.bind(this));
+
+      return [temperatureService, humidityService, ambientLightSerivce, airQualityService];
     }
   }
 }

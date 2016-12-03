@@ -2,7 +2,7 @@
 Homebridge plugin for Hello Sense sleep tracking device
 
 # Installation
-This plugin is still under development. It will be published to NPM as soon as it is ready for prime time.
+As of now this plugin can be installed from npm: `npm install -g homebridge-sense`
 
 # Configuration
 Example:

@@ -15,7 +15,9 @@ Example:
     }
 
 # Roadmap
-- ~~write NodeJS-Plugin for Hello Sense for later use in Plugin~~
+- write NodeJS-Plugin for Hello Sense for later use in Plugin
 - implement ~~Temperature~~, ~~Humidity~~, Sound (noise), ~~Light (ambient light)~~, ~~Particulate (air quality)~~
 - change plugin so that all data will be updated with a single request to speed up and save resources
 - implement periodic update to enable automation without opening any app.
+- Add battery status of the pills
+- Add characteristics for alarms (not sure which and how)...

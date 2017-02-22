@@ -24,7 +24,7 @@ module.exports = function(homebridge){
     // request token on initialization for later requests.
     // token lives for about a year
     // I expect the server to be restarted more often
-    sense.login(this.username, this.password, function(token){
+    sense.login(this.username, this.password, this.log, function(token){
       permanent_token = token;
     });
   }
@@ -73,7 +73,7 @@ module.exports = function(homebridge){
     },
 
     getServices: function() {
-      
+
       var informationService = new Service.AccessoryInformation();
       informationService
         .setCharacteristic(Characteristic.Name, this.name)

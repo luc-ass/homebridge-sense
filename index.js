@@ -97,6 +97,7 @@ module.exports = function(homebridge){
         .on('get', this.getLightLevel.bind(this));
 
       var airQualityService = new Service.AirQualitySensor(this.name);
+      airQualityService.addOptionalCharacteristic(Characteristic.AirParticulateDensity);
       airQualityService
         .getCharacteristic(Characteristic.AirParticulateDensity)
         .on('get', this.getParticulateDensity.bind(this));

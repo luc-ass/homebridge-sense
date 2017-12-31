@@ -34,7 +34,7 @@ module.exports = function(homebridge){
   	getSensorData: function() {
   	var that = this
   	  sense.sensor_data(this.username, this.password, permanent_token, function(temperature, humidity, sound, light, air_quality){
-  		  	that.log("Current Sense Conditions: Temperature: " + temperature + "C, Humidity: " + humidity + ", Light Level: " + light);
+  		  	// that.log("Current Sense Conditions: Temperature: " + temperature + "C, Humidity: " + humidity + ", Light Level: " + light);
   			that.temperatureService.setCharacteristic(Characteristic.CurrentTemperature, temperature);
   			that.humidityService.setCharacteristic(Characteristic.CurrentRelativeHumidity, humidity);
   			that.ambientLightService.setCharacteristic(Characteristic.CurrentAmbientLightLevel, light);
